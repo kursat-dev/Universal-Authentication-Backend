@@ -243,8 +243,8 @@ erDiagram
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/universal-auth-backend.git
-cd universal-auth-backend
+git clone https://github.com/kursat-dev/Universal-Authentication-Backend.git
+cd Universal-Authhentication-Backend
 
 # Copy environment file
 cp .env.example .env
@@ -260,8 +260,8 @@ docker compose up -d
 
 ```bash
 # Clone and install
-git clone https://github.com/yourusername/universal-auth-backend.git
-cd universal-auth-backend
+git clone https://github.com/kursat-dev/Universal-Authentication-Backend.git
+cd Universal-authentication-Backend
 npm install
 
 # Setup environment
@@ -490,9 +490,9 @@ pm2 start dist/server.js --name auth-api
 Contributions welcome! Please read our contributing guidelines.
 
 1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing`)
+2. Create feature branch (`git checkout -b feature/kursata_destek`)
+3. Commit changes (`git commit -m 'Add Kürşata Yardım ☺️'`)
+4. Push to branch (`git push origin feature/kursata_destek`)
 5. Open Pull Request
 
 ---
