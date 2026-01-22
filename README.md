@@ -491,7 +491,7 @@ Contributions welcome! Please read our contributing guidelines.
 
 1. Fork the repository
 2. Create feature branch (`git checkout -b feature/kursata_destek`)
-3. Commit changes (`git commit -m 'Add Kürşata Yardım ☺️'`)
+3. Commit changes (`git commit -m 'Add Kürşat'a Destek ☺️'`)
 4. Push to branch (`git push origin feature/kursata_destek`)
 5. Open Pull Request
 
