@@ -36,6 +36,7 @@
 | Feature | Description |
 |---------|-------------|
 | 🔑 **JWT Authentication** | Access + refresh token flow with automatic rotation |
+| 🌐 **Social Login** | Google and GitHub OAuth 2.0 integration |
 | 👥 **RBAC** | Flexible role-based access control with granular permissions |
 | 🛡️ **Security First** | Argon2 hashing, rate limiting, brute force protection |
 | 📝 **API Docs** | Interactive Swagger/OpenAPI documentation |
@@ -63,12 +64,14 @@ graph TB
         
         subgraph "API Layer"
             AUTH_CTRL[Auth Controller]
+            OAUTH_CTRL[OAuth Controller]
             USER_CTRL[User Controller]
             ROLE_CTRL[Role Controller]
         end
         
         subgraph "Service Layer"
             AUTH_SVC[Auth Service]
+            OAUTH_SVC[OAuth Service]
             TOKEN_SVC[Token Service]
             USER_SVC[User Service]
             RBAC_SVC[RBAC Service]
@@ -161,11 +164,20 @@ erDiagram
         timestamp expires_at
     }
     
+    accounts {
+        uuid id PK
+        uuid user_id FK
+        varchar provider
+        varchar provider_account_id
+        varchar type
+    }
+    
     users ||--o{ user_roles : has
     roles ||--o{ user_roles : assigned_to
     roles ||--o{ role_permissions : has
     permissions ||--o{ role_permissions : assigned_to
     users ||--o{ refresh_tokens : has
+    users ||--o{ accounts : owns
 ```
 
 ### Default Roles
@@ -291,6 +303,8 @@ npm run dev
 | `POST` | `/api/v1/auth/logout-all` | Logout all devices | ✅ |
 | `POST` | `/api/v1/auth/forgot-password` | Request reset | ❌ |
 | `POST` | `/api/v1/auth/reset-password` | Reset password | ❌ |
+| `GET` | `/api/v1/auth/:provider` | Redirect to OAuth | ❌ |
+| `POST` | `/api/v1/auth/:provider/callback` | OAuth Callback | ❌ |
 
 ### Users
 

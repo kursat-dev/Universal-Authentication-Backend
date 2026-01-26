@@ -2,12 +2,14 @@
 node_modules
 .pnp
 .pnp.js
+dist
 
 # testing
 coverage
 
 # production
 build
+dist
 
 # misc
 .DS_Store
