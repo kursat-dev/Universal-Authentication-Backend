@@ -16,7 +16,7 @@ datasource db {
 model User {
   id              String    @id @default(uuid())
   email           String    @unique
-  passwordHash    String    @map("password_hash")
+  passwordHash    String?   @map("password_hash")
   firstName       String?   @map("first_name")
   lastName        String?   @map("last_name")
   isActive        Boolean   @default(true) @map("is_active")
@@ -30,8 +30,33 @@ model User {
   userRoles           UserRole[]
   refreshTokens       RefreshToken[]
   passwordResetTokens PasswordResetToken[]
+  accounts            Account[]
 
   @@map("users")
+}
+
+// ============================================
+// Account Model (Social Login)
+// ============================================
+model Account {
+  id                String  @id @default(uuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refreshToken      String? @map("refresh_token") @db.Text
+  accessToken       String? @map("access_token") @db.Text
+  expiresAt         Int?    @map("expires_at")
+  tokenType         String? @map("token_type")
+  scope             String?
+  idToken           String? @map("id_token") @db.Text
+  sessionState      String? @map("session_state")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
 }
 
 // ============================================
